@@ -2,9 +2,19 @@ import string
 
 
 class classicalCipher():
-    def __init__(self):
-        #self.alpha = {char: i for i, char in enumerate(string.ascii_lowercase + string.ascii_uppercase + ' ')}
-        self.alpha = {char: i for i, char in enumerate(string.printable)}
+    DEFAULTALPHA = {char: i for i, char in enumerate(string.printable)}
+
+    def __init__(self, alpha:dict):
+        if alpha is None:
+            alpha = self.DEFAULTALPHA
+        if not isinstance(alpha,dict):
+            raise TypeError("Alphabet must be a dict mapping characters to int")
+        if len(alpha) < 2:
+            raise ValueError("Alphabet must contain at least two characters")
+        if len(set(alpha.values())) != len(alphabet):
+            raise ValueError("Alphabet values must be unique (no duplicate values)")
+
+        self.alpha = alpha
         self.reversed_alpha = {v:k for k,v in self.alpha.items()}
         self.size = len(self.alpha)
 
@@ -88,23 +98,13 @@ class classicalCipher():
 if __name__ == "__main__":
 
     #----------UNIT TESTS----------
-    cenc = ''.join(classicalCipher().caesar_enc("The Chi square test of independence checks whether two variables are likely to be related or not We have counts for two categorical or nominal variables We also have an idea that the two variables are not related The test gives us a way to decide if our idea is plausible or not", 20))
-    cdec = ''.join(classicalCipher().caesar_dec(cenc, 20))
-    print(cenc)
-    print(cdec)
+    alphabet = {char: i for i, char in enumerate(string.printable)}
+    testString = "This is a test of cipher functionality."
+    encoder = classicalCipher(alphabet)
 
-
-    enc = classicalCipher().vig_enc("This is a test of the vigenere cipher", "Test")
-    print(enc)
-    dec = classicalCipher().vig_dec(enc, "Test")
-    print(dec)
-
-    enc = classicalCipher().rot13_enc("This is a test of the vigenere cipher")
-    print(''.join(enc))
-    dec = classicalCipher().rot13_dec(''.join(enc))
-    print(''.join(dec))
-
-    enc = classicalCipher().atbash_enc("test")
-    print(''.join(enc))
-    dec = classicalCipher().atbash_enc(''.join(enc))
-    print(''.join(dec))
+    print('--------------------TEST CASES--------------------\n')
+    #Caesar cipher
+    print('\033[1mCaesar Cipher\033[0m')
+    caesarEnc= encoder.caesar_enc(testString, 10)
+    caesarDec = encoder.caesar_dec(caesarEnc, 10)
+    print(f'Encoded:\n\t{caesarEnc}\nDecoded:\n\t{caesarDec}')
