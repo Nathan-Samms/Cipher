@@ -100,6 +100,7 @@ if __name__ == "__main__":
     #----------UNIT TESTS----------
     alphabet = {char: i for i, char in enumerate(string.printable)}
     testString = "This is a test of cipher functionality."
+    testKey = "Key for the test cases"
     encoder = classicalCipher(alphabet)
 
     print('--------------------TEST CASES--------------------\n')
@@ -107,4 +108,10 @@ if __name__ == "__main__":
     print('\033[1mCaesar Cipher\033[0m')
     caesarEnc= encoder.caesar_enc(testString, 10)
     caesarDec = encoder.caesar_dec(caesarEnc, 10)
-    print(f'Encoded:\n\t{caesarEnc}\nDecoded:\n\t{caesarDec}')
+    print(f'Encoded:\n\t{caesarEnc}\nDecoded:\n\t{caesarDec}\n')
+
+    #Vigenere Cipher
+    print('\033[1mVigenere Cipher\033[0m')
+    vigenereEnc= encoder.vig_enc(testString, testKey)
+    vigenereDec = encoder.vig_dec(vigenereEnc, testKey)
+    print(f'Encoded:\n\t{vigenereEnc}\nDecoded:\n\t{vigenereDec}\n')
