@@ -78,6 +78,12 @@ class classicalCipher():
             cipherText.append(enc_letter)
 
         return ''.join([self.reversed_alpha[num] for num in cipherText])
+    
+    #Redundant for API
+    
+    def atbash_dec(self, cipherText): 
+        return self.atbash_enc(cipherText)
+    
 
 if __name__ == "__main__":
 
@@ -102,4 +108,3 @@ if __name__ == "__main__":
     print(''.join(enc))
     dec = classicalCipher().atbash_enc(''.join(enc))
     print(''.join(dec))
-
