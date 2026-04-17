@@ -104,9 +104,7 @@ if __name__ == "__main__":
 
     print('--------------------TEST CASES--------------------\n')
     #Caesar cipher
-    
     print('\033[1mCaesar Cipher\033[0m')
     caesarEnc= encoder.caesar_enc(testString, 10)
     caesarDec = encoder.caesar_dec(caesarEnc, 10)
     print(f'Encoded:\n\t{caesarEnc}\nDecoded:\n\t{caesarDec}')
-
