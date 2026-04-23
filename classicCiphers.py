@@ -101,6 +101,7 @@ if __name__ == "__main__":
     alphabet = {char: i for i, char in enumerate(string.printable)}
     testString = "This is a test of cipher functionality."
     testKey = "Key for the test cases"
+    
     encoder = classicalCipher(alphabet)
 
     print('--------------------TEST CASES--------------------\n')
